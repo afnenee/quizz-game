@@ -17,6 +17,7 @@ class Leaderboard extends Component
     public function mount()
     {
         $this->quizzes = Quiz::published()->get();
+        $this->quiz = Quiz::all();
     }
 
     public function render(): View
@@ -37,6 +38,11 @@ class Leaderboard extends Component
             ->orderBy('time_spent')
             ->get();
 
-        return view('livewire.front.leaderboard', compact('tests'));
+        // return view('livewire.front.leaderboard', compact('tests'));
+        return view('livewire.front.leaderboard', [
+            'tests' => $tests,
+            'quizzes' => $this->quizzes,
+            'quiz' => $this->quiz,
+        ]);
     }
 }

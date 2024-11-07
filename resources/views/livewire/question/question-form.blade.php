@@ -14,6 +14,23 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <form wire:submit.prevent="save">
+                        <div class="mt-4">
+                            <x-input-label for="category" value="Category" />
+                            <select wire:model="selectedCategory" id="category" class="block mt-1 w-full">
+                                <option value="">Select a category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <x-input-error :messages="$errors->get('selectedCategory')" class="mt-2" />
+                        </div>
+
+                        <div class="mt-4">
+                            <x-input-label for="new_category" value="Or create a new category" />
+                            <x-text-input wire:model.defer="newCategoryName" id="new_category" class="block mt-1 w-full" type="text" />
+                            <x-input-error :messages="$errors->get('newCategoryName')" class="mt-2" />
+                        </div>
+
                         <div>
                             <x-input-label for="text" value="Question text" />
                             <x-textarea wire:model.defer="question.text" id="text" class="block mt-1 w-full"

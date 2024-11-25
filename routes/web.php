@@ -8,6 +8,7 @@ use App\Http\Livewire\Admin\AdminList;
 use App\Http\Livewire\Admin\Tests\TestList;
 use App\Http\Livewire\Front\Leaderboard;
 use App\Http\Livewire\Front\Results\ResultList;
+use App\Http\Livewire\Statistiques;
 use App\Http\Livewire\Question\QuestionForm;
 use App\Http\Livewire\Question\QuestionList;
 use App\Http\Livewire\Quiz\QuizForm;
@@ -40,6 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::get('myresults', ResultList::class)->name('myresults');
+    Route::get('/statistiques', Statistiques::class);
 
     // Admin routes
     Route::middleware('isAdmin')->group(function () {

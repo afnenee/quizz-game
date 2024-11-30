@@ -9,19 +9,38 @@ use Livewire\Component;
 
 class AdminList extends Component
 {
-    public function delete(User $admin)
+    // public function delete(User $admin)
+    // {
+    //     abort_if(!auth()->user()->is_admin, Response::HTTP_FORBIDDEN, 403);
+
+    //     $admin->delete();
+    // }
+
+    // public function render(): View
+    // {
+    //     $admins = User::admin()->paginate();
+
+    //     return view('livewire.admin.admin-list', [
+    //         'admins' => $admins
+    //     ]);
+    // }
+    public function delete(User $user)
     {
         abort_if(!auth()->user()->is_admin, Response::HTTP_FORBIDDEN, 403);
 
-        $admin->delete();
+        if ($user->is_admin === 0) {
+            $user->delete();
+        } else {
+            session()->flash('error', 'Admin users cannot be deleted.');
+        }
     }
 
     public function render(): View
     {
-        $admins = User::admin()->paginate();
+        $users = User::paginate();
 
         return view('livewire.admin.admin-list', [
-            'admins' => $admins
+            'users' => $users
         ]);
     }
 }

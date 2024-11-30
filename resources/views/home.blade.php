@@ -1,47 +1,53 @@
 <x-app-layout>
-    <div class="py-12">
+    <div class="py-12 bg-gray-100" style="background-color: rgba(97, 117, 206, 0.66);">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h6 class="text-xl font-bold">Public quizzes</h6>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Public Quizzes</h2>
 
-                    @forelse($public_quizzes as $quiz)
-                        <div class="px-4 py-2 w-full lg:w-6/12 xl:w-3/12">
-                            <div
-                                class="flex relative flex-col mb-6 min-w-0 break-words bg-white rounded shadow-lg xl:mb-0">
-                                <div class="flex-auto p-4">
-                                    <a href="{{ route('quiz.show', $quiz->slug) }}">{{ $quiz->title }}</a>
-                                    <p class="text-sm">Questions: <span>{{ $quiz->questions_count }}</span></p>
+                    <div class="flex flex-wrap gap-6">
+                        @forelse($public_quizzes as $quiz)
+                            <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 bg-white border border-gray-200 rounded-lg shadow-lg">
+                                <div class="p-4">
+                                    <a
+                                        href="{{ route('quiz.show', $quiz->slug) }}"
+                                        class="block text-lg font-bold text-blue-600 hover:text-blue-800">
+                                        {{ $quiz->title }}
+                                    </a>
+                                    <p class="mt-2 text-sm text-gray-600">Questions: <span class="font-medium">{{ $quiz->questions_count }}</span></p>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <div class="mt-2">No public quizzes found.</div>
-                    @endforelse
+                        @empty
+                            <div class="text-center text-gray-600 col-span-full">No public quizzes found.</div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="py-12">
+    <div class="py-12 bg-gray-50" style="background-color: rgba(97, 117, 206, 0.66);">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <h6 class="text-xl font-bold">Quizzes for Registered Users</h6>
+            <div class="bg-white shadow-md rounded-lg overflow-hidden">
+                <div class="p-6">
+                    <h2 class="text-2xl font-extrabold text-gray-800 mb-6">Quizzes for Registered Users</h2>
 
-                    @forelse($registered_only_quizzes as $quiz)
-                        <div class="px-4 py-2 w-full lg:w-6/12 xl:w-3/12">
-                            <div
-                                class="flex relative flex-col mb-6 min-w-0 break-words bg-white rounded shadow-lg xl:mb-0">
-                                <div class="flex-auto p-4">
-                                    <a href="{{ route('quiz.show', $quiz->slug) }}">{{ $quiz->title }}</a>
-                                    <p class="text-sm">Questions: <span>{{ $quiz->questions_count }}</span></p>
+                    <div class="flex flex-wrap gap-6">
+                        @forelse($registered_only_quizzes as $quiz)
+                            <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 bg-white border border-gray-200 rounded-lg shadow-lg">
+                                <div class="p-4">
+                                    <a
+                                        href="{{ route('quiz.show', $quiz->slug) }}"
+                                        class="block text-lg font-bold text-blue-600 hover:text-blue-800">
+                                        {{ $quiz->title }}
+                                    </a>
+                                    <p class="mt-2 text-sm text-gray-600">Questions: <span class="font-medium">{{ $quiz->questions_count }}</span></p>
                                 </div>
                             </div>
-                        </div>
-                    @empty
-                        <div class="mt-2">No quizzes for registered users found.</div>
-                    @endforelse
+                        @empty
+                            <div class="text-center text-gray-600 col-span-full">Register to see more quizzes...</div>
+                        @endforelse
+                    </div>
                 </div>
             </div>
         </div>

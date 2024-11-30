@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class QuizForm extends Component
 {
     public Quiz $quiz;
-    public array $questions = []; // Bind the selected questions
+    public array $questions = [];
     public array $questionsSelected = [];
     public bool $editing = false;
     public array $listsForFields = [];
@@ -31,6 +31,7 @@ class QuizForm extends Component
     {
         $this->quiz = $quiz;
         $this->categories = Category::all();
+        
         $this->initListsForFields();
 
         if ($this->quiz->exists) {
@@ -72,10 +73,8 @@ class QuizForm extends Component
     {
         $this->validate();
 
-        // Sync the selected question IDs to the questions property
         $this->questions = $this->questionsSelected;
 
-        // Validate that the questions exist
         $validQuestionIds = array_filter($this->questions, function ($id) {
             return Question::where('id', $id)->exists();
         });

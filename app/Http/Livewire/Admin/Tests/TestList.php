@@ -20,13 +20,22 @@ class TestList extends Component
 
     public function render()
     {
+        // $tests = Test::when($this->quiz_id > 0, function ($query) {
+        //     $query->where('quiz_id', $this->quiz_id);
+        // })
+        //     ->with(['user', 'quiz'])
+        //     ->withCount('questions')
+        //     ->latest()
+        //     ->paginate();
         $tests = Test::when($this->quiz_id > 0, function ($query) {
             $query->where('quiz_id', $this->quiz_id);
         })
-            ->with(['user', 'quiz'])
-            ->withCount('questions')
-            ->latest()
-            ->paginate();
+        ->with(['user', 'quiz' => function ($query) {
+            $query->select('id', 'title');
+        }])
+        ->withCount('questions')
+        ->latest()
+        ->paginate();
 
         return view('livewire.admin.tests.test-list', [
             'tests' => $tests

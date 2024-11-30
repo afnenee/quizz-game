@@ -14,6 +14,9 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @admin
+                <x-nav-link :href="route('statistics')" :active="request()->routeIs('statistics')">
+                    Statistices
+                </x-nav-link>
                 <x-nav-link :href="route('leaderboard')" :active="request()->routeIs('leaderboard')">
                     Leaderboard
                 </x-nav-link>
@@ -36,7 +39,7 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('admins')">
-                                Admins
+                                Users
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('questions')">
                                 Questions

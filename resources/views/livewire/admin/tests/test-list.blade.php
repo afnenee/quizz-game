@@ -37,11 +37,6 @@
                                 </th>
                                 <th class="bg-gray-50 px-6 py-3 text-left">
                                     <span
-                                        class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">IP
-                                        Address</span>
-                                </th>
-                                <th class="bg-gray-50 px-6 py-3 text-left">
-                                    <span
                                         class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Time
                                         Spent</span>
                                 </th>
@@ -60,14 +55,13 @@
                                         {{ $test->user->name ?? 'Guest' }}
                                     </td>
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $test->quiz->title }}
+                                        {{ $test->quiz ? $test->quiz->title : 'No Quiz Assigned' }}
                                     </td>
+
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ $test->result . '/' . $test->questions_count }}
                                     </td>
-                                    <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                        {{ $test->ip_address }}
-                                    </td>
+
                                     <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
                                         {{ intval($test->time_spent / 60) }}:{{ gmdate('s', $test->time_spent) }}
                                         minutes

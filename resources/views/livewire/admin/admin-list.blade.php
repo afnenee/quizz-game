@@ -1,12 +1,12 @@
 <div>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            Admins
+            Users
         </h2>
     </x-slot>
 
     <x-slot name="title">
-        Admins
+        Users
     </x-slot>
 
     <div class="py-12">
@@ -25,34 +25,40 @@
                             <thead>
                                 <tr>
                                     <th class="w-16 bg-gray-50 px-6 py-3 text-left">
-                                        <span
-                                            class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">ID</span>
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">ID</span>
                                     </th>
                                     <th class="bg-gray-50 px-6 py-3 text-left">
-                                        <span
-                                            class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Name</span>
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Name</span>
                                     </th>
                                     <th class="bg-gray-50 px-6 py-3 text-left">
-                                        <span
-                                            class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Email</span>
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Email</span>
+                                    </th>
+                                    <th class="bg-gray-50 px-6 py-3 text-left">
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Role</span>
+                                    </th>
+                                    <th class="bg-gray-50 px-6 py-3 text-left">
+                                        <span class="text-xs font-medium uppercase leading-4 tracking-wider text-gray-500">Actions</span>
                                     </th>
                                 </tr>
                             </thead>
 
                             <tbody class="bg-white divide-y divide-gray-200 divide-solid">
-                                @forelse($admins as $admin)
+                                @forelse($users as $user)
                                     <tr class="bg-white">
                                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $admin->id }}
+                                            {{ $user->id }}
                                         </td>
                                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $admin->name }}
+                                            {{ $user->name }}
                                         </td>
                                         <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
-                                            {{ $admin->email }}
+                                            {{ $user->email }}
                                         </td>
-                                        <td>
-                                            <button wire:click="delete({{ $admin->id }})"
+                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                            {{ $user->is_admin === 0 ? 'User' : 'Admin' }}
+                                        </td>
+                                        <td class="px-6 py-4 text-sm leading-5 text-gray-900 whitespace-no-wrap">
+                                            <button wire:click="delete({{ $user->id }})"
                                                 class="rounded-md border border-transparent bg-red-200 px-4 py-2 text-xs uppercase text-red-500 hover:bg-red-300 hover:text-red-700">
                                                 Delete
                                             </button>
@@ -60,9 +66,9 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8"
+                                        <td colspan="4"
                                             class="px-6 py-4 text-center leading-5 text-gray-900 whitespace-no-wrap">
-                                            No admins were found.
+                                            No users were found.
                                         </td>
                                     </tr>
                                 @endforelse
@@ -70,7 +76,7 @@
                         </table>
                     </div>
 
-                    {{ $admins->links() }}
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

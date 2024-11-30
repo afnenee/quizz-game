@@ -32,4 +32,13 @@ class Test extends Model
     {
         return $this->belongsToMany(Question::class, 'answers', 'test_id', 'question_id');
     }
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class, 'category_test', 'test_id', 'category_id');
+    }
 }
